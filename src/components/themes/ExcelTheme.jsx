@@ -1,8 +1,19 @@
 // src/components/themes/ExcelTheme.jsx
 import { useState } from 'react';
+import HelpModal from '../HelpModal'; // ⭐ 방금 만든 도움말 모달 불러오기
+
+// 테마 파일 최상단에 앞으로 만들 10개의 게임을 모두 import 해둡니다.
+// 테마 파일 최상단 수정
 import Game1 from '../games/Game1';
 import Game2 from '../games/Game2';
-import HelpModal from '../HelpModal'; // ⭐ 방금 만든 도움말 모달 불러오기
+import Game3 from '../games/Game3';
+import Game4 from '../games/Game4';
+import Game5 from '../games/Game5';
+import Game6 from '../games/Game6';
+import Game7 from '../games/Game7';
+import Game8 from '../games/Game8';
+import Game9 from '../games/Game9';
+import Game10 from '../games/Game10';
 
 // App.jsx에서 넘겨준 데이터(Props)들을 받아옵니다.
 export default function ExcelTheme({
@@ -14,6 +25,33 @@ export default function ExcelTheme({
   triggerImageUpload,
   bgImage,
 }) {
+  // 렌더링을 도와주는 함수를 컴포넌트 안에 하나 만들어 줍니다.
+  const renderActiveGame = () => {
+    switch (currentGame) {
+      case 1:
+        return <Game1 />;
+      case 2:
+        return <Game2 />;
+      case 3:
+        return <Game3 />;
+      case 4:
+        return <Game4 />;
+      case 5:
+        return <Game5 />;
+      case 6:
+        return <Game6 />;
+      case 7:
+        return <Game7 />;
+      case 8:
+        return <Game8 />;
+      case 9:
+        return <Game9 />;
+      case 10:
+        return <Game10 />;
+      default:
+        return null;
+    }
+  };
   const cols = 26; // A열 ~ Z열
   const rows = 50; // 1행 ~ 50행
 
@@ -83,18 +121,6 @@ export default function ExcelTheme({
                 </div>
               </>
             )}
-          </div>
-        );
-
-      case '삽입':
-        return (
-          <div className="ribbon-tools">
-            <button className="tool-btn" onClick={() => setCurrentGame(1)}>
-              🖼️<span>그림 삽입</span>
-            </button>
-            <button className="tool-btn">
-              📊<span>차트</span>
-            </button>
           </div>
         );
 
@@ -202,11 +228,16 @@ export default function ExcelTheme({
       <div className="excel-formula">fx</div>
 
       {/* 4. 작업 영역 및 스텔스 게임 레이어 */}
-      <div className="workspace-area">
-        {/* 게임이 켜지면 엑셀 시트 위에 스텔스 레이어로 게임이 올라갑니다 */}
+      <div className="workspace-area" style={{ position: 'relative' }}>
         {currentGame && (
-          <div className="stealth-game-layer">
-            {currentGame === 1 ? <Game1 /> : <Game2 />}
+          <div
+            className="stealth-game-layer"
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onDoubleClick={(e) => e.stopPropagation()}
+          >
+            {/* 위에서 만든 함수를 여기서 실행해 알맞은 게임을 띄웁니다! */}
+            {renderActiveGame()}
           </div>
         )}
 

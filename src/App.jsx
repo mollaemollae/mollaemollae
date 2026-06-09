@@ -37,10 +37,14 @@ function App() {
         return;
       }
 
-      // 🎮 숫자 1~9로 게임 켜기, 0이나 ESC로 끄기
+      // 🎮 게임 켜기: 숫자 1~9를 누르면 1~9번 게임 실행, 0을 누르면 10번 게임 실행
       if (event.key >= '1' && event.key <= '9') {
         setCurrentGame(Number(event.key));
-      } else if (event.key === '0' || event.key === 'Escape') {
+      } else if (event.key === '0') {
+        setCurrentGame(10);
+      }
+      // 🚨 게임 끄기: 이제 숫자 0으로는 꺼지지 않고 오직 'Escape(ESC)' 키로만 꺼집니다.
+      else if (event.key === 'Escape') {
         setCurrentGame(null);
       }
     };
