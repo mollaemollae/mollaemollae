@@ -381,6 +381,7 @@ export default function Game2() {
             남은 패킷: {pitchesLeft}
           </div>
 
+          {/* 상단 점수판 가이드 */}
           <div
             style={{
               position: 'absolute',
@@ -398,12 +399,13 @@ export default function Game2() {
               backgroundColor: 'rgba(255,255,255,0.3)',
             }}
           >
+            {/* ⭐ 10, 50, 80을 -> 10, 40, 70으로 수정하여 실제 계산되는 위치 점수와 동기화! */}
             <span>10</span>
-            <span>50</span>
-            <span>80</span>
+            <span>40</span>
+            <span>70</span>
             <span style={{ fontWeight: 'bold', color: '#777' }}>100</span>
-            <span>80</span>
-            <span>50</span>
+            <span>70</span>
+            <span>40</span>
             <span>10</span>
           </div>
 
